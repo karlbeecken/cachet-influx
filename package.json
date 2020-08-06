@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/karlbeecken/cachet-influx/issues"
   },
-  "homepage": "https://github.com/karlbeecken/cachet-influx#readme"
+  "homepage": "https://github.com/karlbeecken/cachet-influx#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "influx": "^5.6.2"
+  }
 }
