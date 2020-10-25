@@ -6,6 +6,7 @@ axios.get("https://status.fffutu.re/api/v1/components").then((res) => {
   console.log(res.data.systems);
 
   res.data.systems.forEach((val) => {
+    console.log()
     const influx = new Influx.InfluxDB({
       host: "localhost",
       database: "cachet",
@@ -22,12 +23,25 @@ axios.get("https://status.fffutu.re/api/v1/components").then((res) => {
       ],
     });
 
+    let status = 0;
+    switch (val.current_status) {
+      case "Online":
+        status = 0;
+        break;
+      case "Problem":
+        status = 2;
+        break;
+      case "SystemOutage":
+        status = 3;
+        break;
+    }
+
     influx
       .writePoints([
         {
           measurement: val.name.replace(/ /gi, "_"),
           tags: { host: os.hostname() },
-          fields: { name: val.name, status: val.status, id: val.id },
+          fields: { name: val.name, status, id: val.id },
         },
       ])
   });
