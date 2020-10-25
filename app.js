@@ -3,9 +3,9 @@ const os = require("os");
 const axios = require("axios");
 
 axios.get("https://status.fffutu.re/api/v1/components").then((res) => {
-  console.log(res.data.data);
+  console.log(res.data.systems);
 
-  res.data.data.forEach((val) => {
+  res.data.systems.forEach((val) => {
     const influx = new Influx.InfluxDB({
       host: "localhost",
       database: "cachet",
