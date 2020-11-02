@@ -2,7 +2,7 @@ const Influx = require("influx");
 const os = require("os");
 const axios = require("axios");
 
-axios.get("https://status.fffutu.re/api/v1/components").then((res) => {
+axios.get("https://status.fffutu.re/api").then((res) => {
   console.log(res.data.systems);
 
   res.data.systems.forEach((val) => {
